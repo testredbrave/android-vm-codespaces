@@ -1,0 +1,19 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "android-emulator": {
+      "version": "32.1.12",
+      "accept-licenses": true
+    }
+  },
+  "forwardPorts": [5554, 5555, 6080],
+  "postCreateCommand": "bash ./scripts/setup_android.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.vscode-xml",
+        "naco-siren.gradle-language"
+      ]
+    }
+  }
+}
