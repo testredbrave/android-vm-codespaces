@@ -17,3 +17,10 @@
   ],
   "remoteUser": "vscode"
 }
+{
+  "name": "Android VM",
+  "features": {
+    "ghcr.io/devcontainers/features/android-emulator:latest": {}
+  },
+  "postCreateCommand": "./.devcontainer/setup.sh"
+}
