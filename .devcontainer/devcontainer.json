@@ -1,26 +1,26 @@
+cat > .devcontainer/devcontainer.json << 'EOF'
 {
-  "name": "Android Emulator DevContainer",
-  "image": "ghcr.io/devcontainers/features/android-emulator:latest",
+  "name": "Android Emulator in Codespaces",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
   "features": {
-    "ghcr.io/devcontainers/features/android-emulator:latest": {}
+    "ghcr.io/devcontainers/features/android-emulator": {
+      "version": "34.1.9",
+      "accept_licenses": true,
+      "additional_components": ["platform-tools", "emulator", "system-images;android-34;google_apis;x86_64"]
+    }
   },
+  "runArgs": ["--device=/dev/kvm"],
+  "forwardPorts": [5555, 6080],
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-androidtools.vscode-android",
-        "ms-vscode.cpptools"
+        "ms-vscode.cpptools",
+        "redhat.vscode-xml"
       ]
     }
   },
-  "mounts": [
-    "source=${localWorkspaceFolder}/android,target=/workspace,type=bind"
-  ],
+  "postCreateCommand": "bash ./.devcontainer/setup.sh",
   "remoteUser": "vscode"
 }
-{
-  "name": "Android VM",
-  "features": {
-    "ghcr.io/devcontainers/features/android-emulator:latest": {}
-  },
-  "postCreateCommand": "./.devcontainer/setup.sh"
-}
+EOF
