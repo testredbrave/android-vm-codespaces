@@ -1,23 +1,19 @@
 {
-  "name": "Android Codespace",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
-  
+  "name": "Android Emulator DevContainer",
+  "image": "ghcr.io/devcontainers/features/android-emulator:latest",
   "features": {
-    "ghcr.io/devcontainers/features/android-emulator": {
-      "version": "34",
-      "accept_licenses": true
-    }
+    "ghcr.io/devcontainers/features/android-emulator:latest": {}
   },
-
-  "forwardPorts": [5554, 5555, 6080],
-  "runArgs": ["--privileged"],
-  
   "customizations": {
     "vscode": {
       "extensions": [
-        "redhat.vscode-xml",
-        "naco-siren.gradle-language"
+        "ms-androidtools.vscode-android",
+        "ms-vscode.cpptools"
       ]
     }
-  }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/android,target=/workspace,type=bind"
+  ],
+  "remoteUser": "vscode"
 }
